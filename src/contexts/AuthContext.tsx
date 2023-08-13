@@ -20,7 +20,7 @@ import {
    addDoc,
    onSnapshot,
    query,
-   where,
+   // where,
    orderBy,
    updateDoc,
    doc,
@@ -30,6 +30,7 @@ import {
 import { firebaseDatabase } from "../firebase"
 import { useSessionStorage } from "../hooks/useStorage"
 import { toast } from "react-toastify"
+import { Socket, io } from "socket.io-client"
 
 type Props = {
    children: ReactNode
@@ -43,6 +44,7 @@ type ContextValues = {
    addDocument: AddDocumentArgs
    updateDocument: UpdateDocumentArgs
    databaseCollection: CollectionReference<DocumentData, DocumentData>
+   socket: Socket | undefined
 }
 
 type AddDocumentArgs = (
@@ -59,7 +61,12 @@ type AddDocData = {
    createdAt: Date
 }
 
-export type CustomDocument = AddDocData & { id: string }
+export type CustomSource = "api" | "user" | "silent"
+
+export type CustomDocument = AddDocData & {
+   id: string
+   source: CustomSource
+}
 
 const AuthContext = createContext({})
 
@@ -81,6 +88,7 @@ export function AuthProvider({ children }: Props) {
       () => collection(firebaseDatabase, "docs-data"),
       []
    )
+   const [socket, setSocket] = useState<Socket>()
 
    const auth = getAuth()
    const googleProvider = new GoogleAuthProvider()
@@ -143,8 +151,8 @@ export function AuthProvider({ children }: Props) {
 
       const newQuery = query(
          databaseCollection,
-         orderBy("createdAt", "desc"),
-         where("authorEmail", "==", currentUser.email)
+         orderBy("createdAt", "desc")
+         // where("authorEmail", "==", currentUser.email)
       )
 
       const unsubscribe = onSnapshot(newQuery, (resp) => {
@@ -168,6 +176,15 @@ export function AuthProvider({ children }: Props) {
       return unsubscribe
    }, [auth, setCurrentUser])
 
+   useEffect(() => {
+      const newSocket = io(import.meta.env.VITE_SERVER_URL)
+      setSocket(newSocket)
+
+      return () => {
+         newSocket.disconnect()
+      }
+   }, [])
+
    const value: ContextValues = {
       login,
       logout,
@@ -176,6 +193,7 @@ export function AuthProvider({ children }: Props) {
       documentsData,
       addDocument,
       updateDocument,
+      socket,
    }
 
    if (pending) {

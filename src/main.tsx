@@ -1,6 +1,5 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import { firebaseApp } from "./firebase.ts"
 import App from "./App.tsx"
 import ErrorPage from "./errors/ErrorPage.tsx"
 import { Login, Root, TextEditor } from "./components"
@@ -8,8 +7,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import "./index.css"
 import { AuthProvider } from "./contexts/AuthContext.tsx"
-
-firebaseApp
 
 const router = createBrowserRouter([
    {

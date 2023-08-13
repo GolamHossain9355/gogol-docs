@@ -1,13 +1,15 @@
 /* eslint-disable no-empty-pattern */
+import { useEffect } from "react"
 import ReactQuill from "react-quill"
 import { useParams } from "react-router-dom"
 import { useDebounce } from "../hooks"
-import { useAuth } from "../contexts/AuthContext"
+import { CustomDocument, useAuth } from "../contexts/AuthContext"
 import { toast } from "react-toastify"
-import { useCurrentDocument, DocumentTitleAndBody } from "../hooks"
+import { useCurrentDocument } from "../hooks"
 import toolbarOptions from "./toolbarOption"
 
 import "react-quill/dist/quill.snow.css"
+import { ReceivedDocumentData } from "../hooks/useCurrentDocument"
 
 type Props = object
 
@@ -19,7 +21,7 @@ export default function TextEditor({}: Props) {
    const { id } = useParams()
    const [currentDocument, setCurrentDocument, isLoading] =
       useCurrentDocument(id)
-   const { updateDocument } = useAuth()
+   const { updateDocument, socket } = useAuth()
 
    const updateStorageEditorData = async () => {
       if (!id) {
@@ -34,24 +36,55 @@ export default function TextEditor({}: Props) {
 
    useDebounce(updateStorageEditorData, 1000, [currentDocument?.body])
 
-   if (isLoading) {
+   useEffect(() => {
+      if (!socket) return
+
+      socket.on("receive-changes", (receivedDocument: CustomDocument) => {
+         if (receivedDocument.source !== "user") return
+         setCurrentDocument(receivedDocument)
+      })
+
+      return () => {
+         socket.off("receive-changes")
+      }
+   }, [setCurrentDocument, socket])
+
+   const changeHandler: (
+      newDocumentValue: Required<ReceivedDocumentData>
+   ) => void = (newDocumentValue) => {
+      if (!socket) return
+      setCurrentDocument((prev) => {
+         if (!prev) return
+
+         return { ...prev, ...newDocumentValue }
+      })
+      socket.emit("send-changes", newDocumentValue)
+   }
+
+   if (isLoading || currentDocument === undefined) {
       return <div>Loading document data</div>
    }
 
    return (
-      <div className="container">
+      <div className="container mx-auto">
          <h2 className="text-center text-xl mb-4 font-medium print:hidden">
-            {currentDocument?.title}
+            {currentDocument.title}
          </h2>
 
          <ReactQuill
             value={currentDocument?.body}
             modules={modules}
-            onChange={(value) =>
-               setCurrentDocument(
-                  (prev) => ({ ...prev, body: value } as DocumentTitleAndBody)
-               )
-            }
+            onChange={(value, _delta, source) => {
+               if (!currentDocument) return
+
+               const changedDocument = {
+                  ...currentDocument,
+                  body: value,
+                  source,
+               }
+
+               changeHandler(changedDocument)
+            }}
          />
       </div>
    )

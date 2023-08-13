@@ -2,12 +2,12 @@ import { doc, onSnapshot } from "firebase/firestore"
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { CustomDocument, useAuth } from "../contexts/AuthContext"
 
-export type DocumentTitleAndBody = Pick<CustomDocument, "title" | "body">
+export type ReceivedDocumentData = Omit<CustomDocument, "id">
 
 type ReturnState = [
-   currentDocument: DocumentTitleAndBody | undefined,
+   currentDocument: ReceivedDocumentData | undefined,
    setCurrentDocument: Dispatch<
-      SetStateAction<DocumentTitleAndBody | undefined>
+      SetStateAction<ReceivedDocumentData | undefined>
    >,
    isLoading: boolean
 ]
@@ -16,7 +16,7 @@ export default function useCurrentDocument(
    id: string | undefined
 ): ReturnState {
    const [currentDocument, setCurrentDocument] =
-      useState<DocumentTitleAndBody>()
+      useState<ReceivedDocumentData>()
    const [isLoading, setIsLoading] = useState(true)
    const { databaseCollection } = useAuth()
 
@@ -24,14 +24,14 @@ export default function useCurrentDocument(
       if (!id) return
 
       setIsLoading(true)
-      const currentDocument = doc(databaseCollection, id)
+      const foundDocument = doc(databaseCollection, id)
 
-      const unsubscribe = onSnapshot(currentDocument, (foundDoc) => {
-         const { title, body } = foundDoc.data() as DocumentTitleAndBody
+      const unsubscribe = onSnapshot(foundDocument, (foundDoc) => {
+         const newData = foundDoc.data() as ReceivedDocumentData
 
-         if (!body && !title) return
+         if (!newData) return
 
-         setCurrentDocument((prev) => ({ ...prev, title, body }))
+         setCurrentDocument((prev) => ({ ...prev, ...newData }))
       })
 
       setIsLoading(false)
