@@ -149,11 +149,7 @@ export function AuthProvider({ children }: Props) {
    useEffect(() => {
       if (!currentUser || !currentUser.email) return
 
-      const newQuery = query(
-         databaseCollection,
-         orderBy("createdAt", "desc")
-         // where("authorEmail", "==", currentUser.email)
-      )
+      const newQuery = query(databaseCollection, orderBy("createdAt", "desc"))
 
       const unsubscribe = onSnapshot(newQuery, (resp) => {
          const allDocs = resp.docs.map((doc) => ({
