@@ -39,26 +39,26 @@ To run this project locally, follow these steps:
 
 Welcome to the Google Docs Clone! This section will guide you through the steps to make the most of this collaborative document editing platform.
 
-Authentication:
-Upon accessing the app, you'll encounter the sign-up or sign-in page. Click the prominent Google Sign In button and provide your Google email and password for authentication. This ensures secure access to the app's features.
+1. Authentication:
+   Upon accessing the app, you'll encounter the sign-up or sign-in page. Click the prominent Google Sign In button and provide your Google email and password for authentication. This ensures secure access to the app's features.
 
-Home Page:
-After signing in, you'll be directed to the home page. Here, you'll find a comprehensive overview of all your previously created documents. Each document is represented by its title, giving you an organized view of your work.
+2. Home Page:
+   After signing in, you'll be directed to the home page. Here, you'll find a comprehensive overview of all your previously created documents. Each document is represented by its title, giving you an organized view of your work.
 
-Creating a Document:
-To initiate a new document, simply click the "Add Document" button prominently displayed on the page. Assign a suitable title to your document, and you're all set to begin composing your content.
+3. Creating a Document:
+   To initiate a new document, simply click the "Add Document" button prominently displayed on the page. Assign a suitable title to your document, and you're all set to begin composing your content.
 
-Text Editor:
-When you select a document, the app seamlessly takes you to the text editor page. Your document's previous content is effortlessly loaded from the database, providing a foundation for your edits. Feel free to shape and refine your content according to your requirements.
+4. Text Editor:
+   When you select a document, the app seamlessly takes you to the text editor page. Your document's previous content is effortlessly loaded from the database, providing a foundation for your edits. Feel free to shape and refine your content according to your requirements.
 
-Auto-Save Feature:
-As you work on your document, the app's auto-save feature diligently ensures your progress is preserved. The text is automatically saved after 1000ms of inactivity, providing peace of mind even during moments of reflection or temporary disengagement.
+5. Auto-Save Feature:
+   As you work on your document, the app's auto-save feature diligently ensures your progress is preserved. The text is automatically saved after 1000ms of inactivity, providing peace of mind even during moments of reflection or temporary disengagement.
 
-Real-Time Collaboration:
-One of the standout features of this app is real-time collaborative editing. Leveraging the power of socket.io, multiple users can edit the same document simultaneously. To experience this, open an incognito window, sign in with a different account, and witness the seamless synchronization as multiple editors contribute to the same document.
+6. Real-Time Collaboration:
+   One of the standout features of this app is real-time collaborative editing. Leveraging the power of socket.io, multiple users can edit the same document simultaneously. To experience this, open an incognito window, sign in with a different account, and witness the seamless synchronization as multiple editors contribute to the same document.
 
-Logging In and Out:
-To maintain the app's functionality, it's essential to remain logged in. Logging out will direct you back to the sign-in page, allowing you to reauthenticate swiftly and resume your work with ease.
+7. Logging In and Out:
+   To maintain the app's functionality, it's essential to remain logged in. Logging out will direct you back to the sign-in page, allowing you to reauthenticate swiftly and resume your work with ease.
 
 Whether you're creating documents solo or collaborating in real-time with others, the Google Docs Clone offers a user-friendly and efficient platform for all your document editing needs.
 
