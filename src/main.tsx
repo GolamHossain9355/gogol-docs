@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App.tsx"
 import ErrorPage from "./errors/ErrorPage.tsx"
-import { Login, Root, TextEditor } from "./components"
+import { Login, NotFound, Root, TextEditor } from "./components"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 import "./index.css"
@@ -25,6 +25,11 @@ const router = createBrowserRouter([
          {
             path: "/editor/:id",
             element: <TextEditor />,
+         },
+         {
+            // "Not Found" route
+            path: "*",
+            element: <NotFound />,
          },
       ],
    },
