@@ -21,7 +21,7 @@ A Google Docs clone project that allows users to create and collaborate on docum
 
 ## Demo
 
-Provide a link to a live demo of your project if available. Include screenshots or GIFs that showcase the key features of your app.
+-  Demo: `https://gogol-docs.vercel.app/login`
 
 ## Getting Started
 
@@ -72,20 +72,17 @@ Whether you're creating documents solo or collaborating in real-time with others
 
 Reflect on your development journey and share your insights:
 
--  Challenges you faced and how you overcame them.
--  What you learned while working on the project.
--  Any technologies or techniques you found particularly valuable.
+-  Creating this project has been a rewarding experience that deepened my understanding of modern web development concepts. I've successfully implemented features such as Google authentication, real-time collaboration, and data persistence using Firebase Firestore.
+
+-  Throughout the process, I navigated challenges like architecting collaborative environments, optimizing user experiences, and integrating third-party libraries. I've gained practical insights into React state management, handling concurrent updates, and ensuring smooth user interactions.
+
+-  This project underscored the importance of user-centric design and efficient data synchronization. By creating a seamless interface for document creation and editing, I honed my skills in usability and frontend development.
+
+-  In conclusion, this project has expanded my skill set in full-stack development and provided valuable insights into creating dynamic and user-friendly applications. I'm excited to apply these lessons to future projects and continue growing as a developer.
 
 ## Technologies
 
 -  React
 -  Firebase
 -  Socket.io
-
-## Contributing
-
-Contributions are welcome! If you find a bug or want to add a new feature, please follow the [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+-  React-Quill
