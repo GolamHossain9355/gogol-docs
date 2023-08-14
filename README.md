@@ -27,6 +27,18 @@ A Google Docs clone project that allows users to create and collaborate on docum
 
 -  ![Project Screenshot](./public/images/login.PNG)
 
+2. **Home Page:**
+
+-  ![Project Screenshot](./public/images/home-page.PNG)
+
+3. **Add New Document:**
+
+-  ![Project Screenshot](./public/images/adding-document.PNG)
+
+4. **Text Editor:**
+
+-  ![Project Screenshot](./public/images/text-editor.PNG)
+
 ## Getting Started
 
 To run this project locally, follow these steps:
