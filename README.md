@@ -23,7 +23,9 @@ A Google Docs clone project that allows users to create and collaborate on docum
 
 -  Demo: `https://gogol-docs.vercel.app/login`
 
-![Project Screenshot](./public/images/login.PNG)
+1. **Login page:**
+
+-  ![Project Screenshot](./public/images/login.PNG)
 
 ## Getting Started
 
