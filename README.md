@@ -70,8 +70,6 @@ Whether you're creating documents solo or collaborating in real-time with others
 
 ## Reflection
 
-Reflect on your development journey and share your insights:
-
 -  Creating this project has been a rewarding experience that deepened my understanding of modern web development concepts. I've successfully implemented features such as Google authentication, real-time collaboration, and data persistence using Firebase Firestore.
 
 -  Throughout the process, I navigated challenges like architecting collaborative environments, optimizing user experiences, and integrating third-party libraries. I've gained practical insights into React state management, handling concurrent updates, and ensuring smooth user interactions.
