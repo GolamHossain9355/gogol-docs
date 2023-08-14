@@ -81,6 +81,9 @@ Whether you're creating documents solo or collaborating in real-time with others
 ## Technologies
 
 -  React
--  Firebase
--  Socket.io
+-  Typescript
+-  Tailwind
 -  React-Quill
+-  Firebase Authentication
+-  Firebase Storage
+-  Socket.io
